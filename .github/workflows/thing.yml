@@ -13,14 +13,8 @@ function inlineImage() {
                           .fetch(youtubeLogoUrl)
                           .getBlob()
                           .setName("youtubeLogoBlob");
-  MailApp.sendEmail({
-    to: "424244@orangeusd.org",
-    subject: "Why",
-    htmlBody: "inline Google Logo<img src='cid:googleLogo'> images! <br>" +
-              "inline YouTube Logo <img src='cid:youtubeLogo'>",
-    inlineImages:
       {
-        googleLogo: googleLogoBlob,
+        googleLogo: googleLogoBlob; 
         youtubeLogo: youtubeLogoBlob
       }
   });
