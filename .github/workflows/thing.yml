@@ -1,0 +1,186 @@
+// @ts-nocheck
+// This code fetches the Google and YouTube logos, inlines them in an email
+// and sends the email
+function inlineImage() {
+  var googleLogoUrl = "https://www.gstatic.com/images/branding/googlelogo/1x/googlelogo_color_74x24dp.png";
+  var youtubeLogoUrl =
+        "https://developers.google.com/youtube/images/YouTube_logo_standard_white.png";
+  var googleLogoBlob = UrlFetchApp
+                         .fetch(googleLogoUrl)
+                         .getBlob()
+                         .setName("googleLogoBlob");
+  var youtubeLogoBlob = UrlFetchApp
+                          .fetch(youtubeLogoUrl)
+                          .getBlob()
+                          .setName("youtubeLogoBlob");
+  MailApp.sendEmail({
+    to: "424244@orangeusd.org",
+    subject: "Why",
+    htmlBody: "inline Google Logo<img src='cid:googleLogo'> images! <br>" +
+              "inline YouTube Logo <img src='cid:youtubeLogo'>",
+    inlineImages:
+      {
+        googleLogo: googleLogoBlob,
+        youtubeLogo: youtubeLogoBlob
+      }
+  });
+}
+MailApp.sendEmail("recipient@example.com",
+                  "reallys",
+                  "ur cool?");
+// Send an email with two attachments: a file from Google Drive (as a PDF) and an HTML file.
+var blob = Utilities.newBlob('Insert any HTML content here', 'text/html', 'my_document.html');
+MailApp.sendEmail('mike@example.com', 'Attachment example', 'Two files are attached.', {
+    name: 'Automatic Emailer Script',
+});
+MailApp.sendEmail("recipient@example.com",
+                  "replies@example.com",
+                  "rgwb45",
+                  "grwfrgbfvbrsfgbv");
+UiApp: true;
+MailApp.sendEmail("recipient@example.com",
+                  "geometry dash?",
+                  "do u play");
+// Create a draft response to all recipients (except those bcc'd) with an acknowledgment.
+var firstThread = GmailApp.getInboxThreads(0,1)[0];
+var message = firstThread.getMessages()[0];
+message.createDraftReplyAll("Got your message");
+
+// Create a draft response to all recipients (except those bcc'd) using an HTML text body.
+var firstThread = GmailApp.getInboxThreads(0,1)[0];
+var message = firstThread.getMessages()[0];
+message.createDraftReplyAll("incapable of HTML", {
+  htmlBody: "<b>some HTML body text</b>",
+  cc: "another@example.com"
+});
+
+// Forward first message of first inbox thread to recipient1 & recipient2, both @example.com
+var firstThread = GmailApp.getInboxThreads(0,1)[0];
+var message = firstThread.getMessages()[0];
+message.forward("recipient1@example.com,recipient2@example.com");
+
+var firstThread = GmailApp.getInboxThreads(0,1)[0];
+var message = firstThread.getMessages()[0];
+message.forward("recipient1@example.com,recipient2@example.com", {
+  cc: "myboss@example.com",
+  bcc: "mybosses-boss@example.com,vp@example.com"
+});
+var thread = GmailApp.getInboxThreads(0,1)[0]; // Get first thread in inbox
+var message = thread.getMessages()[0]; // Get first message
+Logger.log(message.getBcc()); // Log bcc'd addresses
+
+var thread = GmailApp.getInboxThreads(0,1)[0]; // Get first thread in inbox
+var message = thread.getMessages()[0]; // Get first message
+Logger.log(message.getBody()); // Log contents of the body
+
+var thread = GmailApp.getInboxThreads(0,1)[0]; // Get first thread in inbox
+var message = thread.getMessages()[0]; // Get first message
+Logger.log(message.getCc()); // Log cc'd addresses
+
+var thread = GmailApp.getInboxThreads(0,1)[0]; // Get first thread in inbox
+var message = thread.getMessages()[0]; // Get first message
+Logger.log(message.getDate()); // Log date and time of the message
+
+var thread = GmailApp.getInboxThreads(0,1)[0]; // Get first thread in inbox
+var message = thread.getMessages()[0]; // Get first message
+Logger.log(message.getFrom()); // Log from address of the message
+
+var thread = GmailApp.getInboxThreads(0,1)[0]; // Get first thread in inbox.
+var message = thread.getMessages()[0];         // Get the first message.
+Logger.log(message.getHeader("Message-ID"));   // Logs the Message-ID RFC 2822 header.
+
+var thread = GmailApp.getInboxThreads(0,1)[0]; // Get first thread in inbox
+var message = thread.getMessages()[0]; // Get first message
+Logger.log(message.getPlainBody()); // Log contents of the body
+
+var thread = GmailApp.getInboxThreads(0,1)[0]; // Get first thread in inbox
+var message = thread.getMessages()[0]; // Get first message
+Logger.log(message.getReplyTo()); // Logs reply-to address
+
+var thread = GmailApp.getInboxThreads(0,1)[0]; // Get first thread in inbox
+var message = thread.getMessages()[0]; // Get first message
+Logger.log(message.getSubject()); // Log subject line
+
+var thread = GmailApp.getInboxThreads(0,1)[0]; // Get first thread in inbox
+var message = thread.getMessages()[0]; // Get first message
+Logger.log(message.getThread().getFirstMessageSubject() ==
+           thread.getFirstMessageSubject()); // Always logs true
+
+var thread = GmailApp.getInboxThreads(0,1)[0]; // Get first thread in inbox
+var message = thread.getMessages()[0]; // Get first message
+Logger.log(message.getTo()); // Log the recipient of message
+
+var thread = GmailApp.getInboxThreads(0,1)[0]; // Get first thread in inbox
+var message = thread.getMessages()[0]; // Get first message
+Logger.log("is draft? " + message.isDraft());
+
+var thread = GmailApp.getInboxThreads(0,1)[0]; // Get first thread in inbox
+var message = thread.getMessages()[0]; // Get first message
+Logger.log("is a chat? " + message.isInChats());
+
+var thread = GmailApp.getInboxThreads(0,1)[0]; // Get first thread in inbox
+var message = thread.getMessages()[0]; // Get first message
+Logger.log("is in inbox? " + message.isInInbox());
+
+var thread = GmailApp.getPriorityInboxThreads(0,1)[0]; // Get first thread in priority inbox
+var messages = thread.getMessages();
+for (var i = 0; i < messages.length; i++) {
+  // At least one of the messages is in priority inbox
+  Logger.log("is in priority inbox? " + messages[i].isInPriorityInbox());
+}
+
+var thread = GmailApp.getInboxThreads(0,1)[0]; // Get first thread in inbox
+var message = thread.getMessages()[0]; // Get first message
+Logger.log("is in the trash? " + message.isInTrash());
+
+var thread = GmailApp.getInboxThreads(0,1)[0]; // Get first thread in inbox
+var message = thread.getMessages()[0]; // Get first message
+Logger.log("is starred? " + message.isStarred());
+
+var thread = GmailApp.getInboxThreads(0,1)[0]; // Get first thread in inbox
+var message = thread.getMessages()[0]; // Get first message
+Logger.log("is unread? " + message.isUnread());
+
+var thread = GmailApp.getInboxThreads(0,1)[0]; // Get first thread in inbox
+var message = thread.getMessages()[0]; // Get first message
+message.markRead(); // Mark as read
+
+var thread = GmailApp.getInboxThreads(0,1)[0]; // Get first thread in inbox
+var message = thread.getMessages()[0]; // Get first message
+message.markUnread(); // Mark as unread
+
+var thread = GmailApp.getInboxThreads(0,1)[0]; // Get first thread in inbox
+var message = thread.getMessages()[0]; // Get first message
+message.moveToTrash(); // Move message to trash
+
+var thread = GmailApp.getInboxThreads(0,1)[0]; // Get first thread in inbox
+var message = thread.getMessages()[0]; // Get first message
+// .. Do bunch of stuff here
+message.refresh(); // Make sure it's up to date
+// Do more stuff to message
+
+// Respond to author of message with acknowledgment
+var firstThread = GmailApp.getInboxThreads(0,1)[0];
+var message = firstThread.getMessages()[0];
+message.reply("Got your message");
+
+// Respond with HTML body text
+var firstThread = GmailApp.getInboxThreads(0,1)[0];
+var message = firstThread.getMessages()[0];
+message.reply("incapable of HTML", {
+  htmlBody: "<b>some HTML body text</b>",
+  noReply: true
+});
+
+// Respond to all recipients (except bcc'd) of last email in thread with acknowledgment
+var firstThread = GmailApp.getInboxThreads(0,1)[0];
+var message = firstThread.getMessages()[0];
+message.replyAll("Got your message");
+
+var thread = GmailApp.getInboxThreads(0,1)[0]; // Get first thread in inbox
+var message = thread.getMessages()[0]; // Get first message
+message.star(); // Star the message
+
+var thread = GmailApp.getInboxThreads(0,1)[0]; // Get first thread in inbox
+var message = thread.getMessages()[0]; // Get first message
+message.unstar(); // Unstar the message
